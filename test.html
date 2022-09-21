@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="Application">
+      <div>全局数据count1:{{count1}}</div>
+      
+      <button @click="count1=1">按钮</button>
+    </div>
+    
+    <script>
+      const appData = {
+        count1:0
+      }
+      
+      const App = Vue.createApp({
+        data(){
+          return {
+            appData
+          }
+        }
+      }).mount("#Application")
+    </script>
+    
+    
+    
+    
+    
+</body>
+
+</html>

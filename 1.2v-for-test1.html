@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Vue.js</title>
+
+  <!-- Vue.js -->
+  
+
+
+<script src="app.js"></script>
+<script>
+  list:[
+  {
+    name:"sfj",
+    num:"s78939"
+  },
+  {
+    name:"djfs",
+    num:"8484389"
+  }
+  ]
+  
+</script>
+</head>
+
+<body>
+ <div id="Application">
+   <ul>
+     <li v-for="(item,index) in handle(list)">
+       <div>{{index + "." + item.name}}</div>
+       <div>{{item.num}}</div>
+     </li>
+   </ul>
+   <button @click="click">逆序</button>
+ </div>
+  <script>
+    const App={
+      data(){
+        return {
+          list:[
+            {
+              name:"zr",
+              num:"001"
+            },
+            {
+              name:"ljf",
+              num:"002"
+            }
+            ]
+        }
+      },
+      methods:{
+        click(){
+          alert("hdjf"),
+          this.list.reverse()
+        },
+        handle(list){
+        return list.filter(obj => obj.name != "zr")
+        }
+        
+      }
+      
+    }
+    Vue.createApp(App).mount("#Application")
+  </script>
+
+  
+  
+</body>
+</html>

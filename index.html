@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Vue.js</title>
+
+  <!-- Vue.js -->
+  
+
+
+<script src="app.js"></script>
+<script>
+  list:[
+  {
+    name:"sfj",
+    num:"s78939"
+  },
+  {
+    name:"djfs",
+    num:"8484389"
+  }
+  ]
+  
+</script>
+</head>
+
+<body>
+ <div id="Application">
+   <div v-for="item in list">
+     {{item}}
+   </div>
+ </div>
+  <script>
+    const App={
+      data:function(){
+        return{
+        list:[1,2,3]
+      }
+      
+    }}
+    Vue.createApp(App).mount("#Application")
+  </script>
+
+  
+  
+</body>
+</html>

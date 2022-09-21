@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <script src="vue.js"></script>
+    <script src="lodash.min.js"></script>
+</head>
+
+<body>
+     <div id="Application">
+      <span>点击了{{count}}次</span>
+      <button @click="click">按钮</button>
+    </div>
+    
+    <script>
+      const App = {
+        data(){
+          return{
+            count:0
+          }
+        },
+        methods:{
+          click: _.debounce(function(){
+            this.count++
+            console.log(Date())
+          },3000)
+        }
+      }
+    Vue.createApp(App).mount("#Application")
+    </script>
+    
+</body>
+
+</html>

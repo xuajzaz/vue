@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+
+</body>
+  
+   <div id="bind">
+    <div></div>
+    <input type="text" v-model="a">
+    <button @click="add()">添加</button>
+  </div>
+  
+  <script>
+    const App = {
+      data:function(){
+        return {
+          count:4,
+          a:""
+        }
+      },
+      computed:{
+        typ:{
+          get() { 
+            return this.count > 3 ? "大" : "小"
+              },
+          set(newValue){
+            if(newValue == "大"){
+              this.count = 11
+            }else{
+              this.count = 0
+            }
+          }
+      }
+      },
+      methods:{
+        add(){
+          alert(this.count)
+          this.count ++
+        }
+      }
+      
+    }
+    var t =Vue.createApp(App).mount("#bind")
+    
+    alert(t.count)
+  </script>
+  
+ 
+  
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    
+    <div id="Application">
+      <div>点击次数:{{count}}</div>
+      <button @click="click(),log()">点击1</button>
+      <button @click="this.count++,log()">点击2</button>
+      <div>{{show}}</div>
+    </div>
+    
+    <script>
+      const App = {
+        data(){
+          return{
+            count:0,
+            show:""
+          }
+        },
+        methods:{
+          click(){
+            this.count ++
+            
+            
+          },
+          log(){
+            this.show="多事件调用"
+            
+          }
+        }
+        
+        
+      }
+      Vue.createApp(App).mount("#Application")
+      
+    </script>
+</body>
+
+</html>

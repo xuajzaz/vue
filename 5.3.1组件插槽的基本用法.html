@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="Application">
+      <my-container>
+        
+        
+      </my-container>
+      <div>bxnxj</div>
+      <my-container>组件内部</my-container>
+    </div>
+    
+    <script>
+      const App = Vue.createApp({})
+      
+      const containerComponent = {
+        template:
+        `
+        <div style="border-style:solid;border-color:red;border-width:10px;">
+          
+          <slot>插槽的默认内容</slot>
+        
+        </div>
+        `
+      }
+      App.component("my-container",containerComponent)
+      App.mount("#Application")
+    </script>
+    
+    
+</body>
+
+</html>

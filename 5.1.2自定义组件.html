@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="Application">
+    <my-alert></my-alert>
+    
+  </div>
+  
+  <script>
+    const App = Vue.createApp({})
+    const alertComponent = {
+      data(){
+        return {
+          msg:"警告框提示",
+          count:0
+        }
+      },
+      methods:{
+        click(){
+          alert(this.msg + this.count++)
+        }
+      },
+      template:
+      `<div>
+          <button style="width:100px;height:100px" @click="click">按钮</button>
+      </div>`
+      
+    }
+    App.component("my-alert",alertComponent)
+    App.mount("#Application")
+  </script>
+</body>
+
+</html>

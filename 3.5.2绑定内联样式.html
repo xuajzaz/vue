@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <script src="vue.js"></script>
+    
+</head>
+
+<body>
+    <div id="Application">
+    <div :style="{color:textColor,fontSize:textFont}">示例文案
+    </div>
+    </div>
+    <script>
+      const App = {
+        data(){
+          return {
+            textColor:'red',
+            textFont:'50px'
+            
+          }
+        }
+        
+        
+      }
+      
+      Vue.createApp(App).mount("#Application")
+    </script>
+    
+    
+</body>
+
+</html>

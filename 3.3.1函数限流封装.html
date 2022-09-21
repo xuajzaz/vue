@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="Application">
+      <span>{{count}}</span>
+      <button @click="click">按钮</button>
+    </div>
+    
+    <script>
+      var execu = false
+      function throttleTool(callback,timeout){
+        if(!execu){
+          callback()
+        } else{
+          return
+        }
+        execu = true
+        setTimeout(() => {
+          execu = false
+        },timeout)
+        
+      }
+    
+    
+      const App = {
+        data(){
+          return {
+            count:0,
+          }
+        },
+        methods:{
+          click(){
+            throttleTool(() => {
+              alert("执行限流体")
+              this.count++
+            },3000)
+          }
+          
+        }
+        
+      }
+      Vue.createApp(App).mount("#Application")
+    </script>
+    
+</body>
+
+</html>

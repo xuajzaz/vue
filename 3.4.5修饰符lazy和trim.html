@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="Application">
+      <div>lazy当输入框完成后才会同步修改属性的值，trim去除首尾空格</div>
+      <input type="text" v-model.lazy.trim="textFiled">
+      <p>文本输入框内容:{{textFiled}}</p>
+  </div>
+    
+    
+    <script>
+      const App = {
+        data(){
+          return {
+            textFiled:""
+          }
+        }
+        
+      }
+      Vue.createApp(App).mount("#Application")
+      
+    </script>
+</body>
+
+</html>

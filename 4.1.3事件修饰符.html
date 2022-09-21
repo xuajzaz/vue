@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+  <div>stop修饰符可以阻止事件传给例最内层3</div>
+    <div id="Application">
+      <div>{{show}}</div>
+      <div @click="click1" style="border:solid red;width:150px;height: 150px">
+        <div @click.once="click2" style="border:solid green;width: 100px;height: 100px">
+          <div @click.stop="click3" style="border:solid gold;width: 50px;height: 50px"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const App = {
+        data(){
+          return {
+            show:""
+          }},
+          methods:{
+            click1(){
+              this.show = this.show + "外层"
+            },
+            click2(){
+            this.show = this.show + "中层"
+            },
+            click3(){
+            this.show = this.show + "内层"
+            }
+            
+            
+          }
+          
+        
+        
+      }
+      Vue.createApp(App).mount("#Application")
+      
+    </script>
+    
+</body>
+
+</html>

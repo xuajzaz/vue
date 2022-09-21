@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <script src="vue.js"></script>
+    
+</head>
+
+<body>
+  
+ <div id="Application">
+    
+      <p>firstName值: {{firstName}}</p>
+      <p>fullName值: {{fullName}}</p>
+    
+    <button @click="ClickCeshi">点击改变fullName的值</button>
+  </div>
+    
+    <script>
+      const App = {
+        
+data () {
+    return {
+      firstName: 'Foo'
+    }
+  },
+  methods: {
+    ClickCeshi () {
+      this.fullName = 'fullName的新值'
+    }
+  },
+  computed: {
+    fullName: {
+      get() {
+        console.log('调用了getter属性')
+        return '***' + this.firstName + '***'
+      },
+      set: function (newValue) {
+        console.log('调用了settter属性')
+        console.log(newValue)
+        this.firstName = newValue
+      }
+    }
+  }
+        
+      }
+      
+      Vue.createApp(App).mount("#Application")
+    </script>
+    
+    
+</body>
+
+</html>

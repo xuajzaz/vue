@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="Application">
+      <div>全局数据count1:{{appData.count1}}</div>
+      <div>count:{{count}}</div>
+      <div>count2:{{count2}}</div>
+      <div>{{countString}}</div>
+      <button @click="click">按钮</button>
+    </div>
+    
+    <script>
+      const appData = {
+        count1:0
+      }
+      const App = Vue.createApp({
+        data(){
+          return {
+            appData,
+            count:0,
+            count2:0
+          }
+        },
+        computed:{
+          countString:{
+            get(){
+              return this.count + "次"
+            }
+          }
+        },
+        methods:{
+          click(){
+            this.count += 1,
+            this.count2 +=1
+          },
+          countChange(value,oldValue){
+            console.log("第二种监听方式:" + value,oldValue)
+          }
+        },
+        watch:{
+          count(value,oldValue){
+            console.log("第一种监听方式")
+            console.log("value,oldValue" + value,oldValue)
+          },
+          count2:"countChange"
+        }
+          
+  
+        
+      }).mount("#Application")
+      
+    </script>
+    
+    
+    
+    
+    
+</body>
+
+</html>

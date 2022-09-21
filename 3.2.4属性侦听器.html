@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+
+</body>
+  
+   <div id="bind">
+    <input type="text" v-model="searchText">
+  </div>
+  
+  <script>
+    const App = {
+      data:function(){
+        return {
+          searchText:""
+        }
+      },
+      watch:{
+        searchText(oldValue,newValue){
+          if(oldValue.length > 3){
+            alert("文本太长了")
+            this.searchText=""
+          }
+        }
+      },
+      
+    }
+    Vue.createApp(App).mount("#bind")
+
+  </script>
+  
+ 
+  
+</html>

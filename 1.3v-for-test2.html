@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Vue.js</title>
+
+  <!-- Vue.js -->
+  
+
+
+<script src="app.js"></script>
+<script>
+  
+  
+   
+</script>
+</head>
+
+<body>
+ <div id="Application">
+   <ol>
+     <li v-for="(value,key,index) in person">
+       {{key}}:{{value}}
+     </li>
+   </ol>
+ </div>
+  <script>
+    const App={
+      data(){
+        return {
+          person: {
+            name:"zr",
+            age:"25",
+            num:"12345",
+            emali:"xxxxxx@xx.com"
+  }
+        }
+      }
+      
+    }
+    Vue.createApp(App).mount("#Application")
+  </script>
+</body>
+</html>

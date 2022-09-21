@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="Application">
+      <my-container2>
+        <template #footer>
+          <span style="color: red">必须使用template标签来包装插槽内容</span>
+        </template>
+        <template v-slot:header>
+          <h1>v-slot写法:头部</h1>
+        </template>
+        <template #main>
+          <h2>#写法:内容部分</h2>
+        </template>
+        
+      </my-container2>
+    </div>
+    
+    <script>
+      const App = Vue.createApp({})
+      const container2 = {
+        template:
+          `
+            <div>
+              <slot name="header"></slot>
+              <slot name="main"></slot>
+              <slot name="footer"></slot>
+            </div>
+          
+          `
+        
+      }
+      App.component("my-container2",container2)
+      App.mount("#Application")
+      
+    </script>
+    
+    
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    
+    <div id="Application">
+      <div>{{inputText}}</div>
+      <my-input v-model="inputText"></my-input>
+      <button @click="this.inputText = ''">清空</button>
+    </div>
+    
+    
+    <script>
+      
+    
+      const App = Vue.createApp({
+        data(){
+          return {
+            inputText:""
+          }
+        },
+      })
+      
+      const inputComponent = {
+        props:["modelValue"],
+        methods:{
+          action(event){
+          
+            this.$emit('update:modelValue',event.target.value)  
+          }
+        }
+        
+      ,
+      template:
+      `
+      <div>
+        <span>输入框</span>
+        <input :value="modelValue" @input ="action"/>
+      </div>
+      
+      `
+      }
+      App.component("my-input",inputComponent)
+      App.mount("#Application")
+    </script>
+</body>
+
+</html>

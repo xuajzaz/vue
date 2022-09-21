@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+    
+    <style>
+      .red{
+        color: red
+      }
+      .blue{
+        color: blue
+      }
+    </style>
+</head>
+
+<body>
+    <div id="Application">
+      <div :class="{blue:isBlue,red:isRed}">示例文案1</div>
+      <div :class="style">文案2</div>
+      <div :class="[blue,red]">文案3</div>
+    </div>
+    
+    <script>
+      const App = {
+        data(){
+          return {
+            
+            style:{
+              blue:true,
+              red:false
+            },
+            isBlue:false,
+            isRed:true,
+            red:"red",
+            blue:"blue",
+          }
+        }
+      }
+      Vue.createApp(App).mount("#Application")
+      
+    </script>
+</body>
+
+</html>

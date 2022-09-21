@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="Application">
+      <my-alert @myclick="appfunc" title = "按钮1"></my-alert>
+      <my-alert2 title="按钮2"></my-alert2>
+      <my-alert3 @myclick="appfunc" title="按钮3"></my-alert3>
+    </div>
+    
+    <script>
+      const App = Vue.createApp({
+        methods:{
+          appfunc(param){
+            console.log("点击了自定义组件my-alert1:" + param)
+            
+          }
+        }
+      })
+      const alertComponent = {
+        props:["title"],
+        template:
+        `
+        <div>
+          <button @click="$emit('myclick' ,title)">{{title}}</button>
+        </div>
+        `
+        ,
+        methods:{
+          a(){
+            console.log("a")
+          }
+        }
+        
+      }
+      const alertComponent2 = {
+         methods:{
+           appfunc2(param){
+             console.log("点击了自定义组件my-alert2:" + param)
+           }
+         },
+         props:["title"],
+         template:
+         `
+         <div>
+           <button @click="appfunc2(title)">{{title}}</button>
+         </div>
+         `
+         ,
+         
+      }
+      const alertComponent3 = {
+        props:["title"],
+        template:
+        `
+        <div>
+          <button @click="click">{{title}}</button>
+        </div>
+        `
+        ,
+        methods:{
+          click(){
+            console.log("组件内部逻辑")
+            this.$emit("myclick",this.title)
+          }
+        }
+        
+      }
+      
+      App.component("my-alert",alertComponent)
+      App.component("my-alert2",alertComponent2)
+      App.component("my-alert3",alertComponent3)
+      App.mount("#Application")
+    
+    </script>
+</body>
+
+</html>
