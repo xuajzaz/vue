@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+
+  <div id="Application">
+    <sub-com>
+      
+    </sub-com>
+    
+  </div>
+  
+  <script>
+    const App = Vue.createApp({})
+    
+    App.config.globalProperties = {
+      version:"1.0.0"
+    }
+    
+    
+    const sub = {
+      mounted(){
+        console.log(this.version)
+      },
+      template:
+      `
+        <div>
+        </div>
+      `
+    }
+    
+    App.component("sub-com",sub)
+    
+    App.mount("#Application")
+    
+    
+  </script>
+</body>
+
+</html>

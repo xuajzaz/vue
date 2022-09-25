@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="Application">
+    <h1>方式一:数据一层一层传递</h1>
+    <my-list :count="5">
+    </my-list>
+    
+    
+    <hr />
+    <h1>方式二:使用provide和inject来传递数据</h1>
+    
+    <my-list2 :count="3">
+    </my-list2>
+    
+    
+  </div>
+
+
+  <script>
+    const App =Vue.createApp({})
+    
+    //方式一实现
+    const listCom ={
+      props:{
+        count:Number
+      },
+      template:
+        `
+         <div style="border:red solid 10px;">
+            <my-item v-for="i in this.count" :index="i" :list-count="this.count">
+            </my-item>
+         </div>
+        `
+    }
+    const itemCom = {
+      props:{
+        listCount:Number,
+        index:Number
+      },
+      template:
+      `
+        <div style="border:blue solid 10px;">
+          <my-label :list-count="this.listCount" :index="this.index">
+          </my-label>
+        </div>
+      `
+    }
+    const labelCom = {
+      props:{
+        listCount:Number,
+        index:Number
+      },
+      template:
+      `
+        <div>{{index}}/{{listCount}}</div>
+      `
+    }
+    
+    //方式二实现:
+    const listCom2 ={
+      props:{
+        count:Number
+      },
+      provide(){
+        return{
+          listCount:this.count
+        }
+      },
+      template:
+       `
+       <div style="border:red solid 10px;">
+         <my-item2 v-for="i in this.count" :index="i">
+         </my-item2>
+       </div>
+       `  
+    }
+    const itemCom2 ={
+      props:{
+        index:Number
+      },
+      template:
+      `
+      <div style="border:blue solid 10px;">
+        <my-label2 :index="this.index">
+        </my-label2>
+      </div>
+      `
+    }
+    
+    const labelCom2 ={
+      props:{
+        index:Number
+      },
+      inject:['listCount'],
+      template:
+      `
+        <div>{{index}}/{{this.listCount}}</div>
+      `
+    }
+
+    App.component("my-list",listCom)
+    App.component("my-item",itemCom)
+    App.component("my-label",labelCom)
+    
+    App.component("my-list2",listCom2)
+    App.component("my-item2",itemCom2)
+    App.component("my-label2",labelCom2)
+    App.mount("#Application")
+  </script>
+
+</body>
+
+</html>

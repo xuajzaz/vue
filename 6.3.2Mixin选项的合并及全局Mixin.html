@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="Application">
+      <com title="组件1"></com>
+    </div>
+  
+    <script>
+      const App = Vue.createApp({})
+      App.mixin({
+        mounted(){
+          console.log("Mixin对象mounted")
+        }
+        
+      })
+      
+      const myMixin = {
+        data(){
+          return {
+            a:"a",
+            b:"b",
+            c:"c"
+          }
+        }
+      }
+    
+      const myMixin2 = {
+        props:['title']
+      }
+      
+      var r = "rrrr"
+    
+    const com = {
+      //mixins:[myMixin,r]混入单个变量报错
+      mixins:[myMixin,myMixin2],
+      data(){
+        return{
+          a:"覆盖的a",
+          d:"d"
+        }
+      },
+      created(){
+        console.log(this.$data)
+        console.log(r)
+      },
+      template:
+        `<div>{{title}}</div>`
+    
+    }
+    App.component("com",com)
+    
+    App.mount("#Application")  
+    </script>
+    
+</body>
+
+</html>

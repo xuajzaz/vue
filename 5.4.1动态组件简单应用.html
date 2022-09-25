@@ -14,6 +14,7 @@
     <div id="Application">
       <input type="radio" value="page1" v-model="page">页面1
       <input type="radio" value="page2" v-model="page">页面2
+      <div>{{page}}</div>
       <component :is="page"></component>
     </div>
     
