@@ -11,13 +11,14 @@
 <body>
     <div id="Application">
       <com title="组件1"></com>
+      <com2></com2>
     </div>
   
     <script>
       const App = Vue.createApp({})
       App.mixin({
         mounted(){
-          console.log("Mixin对象mounted")
+          console.log("全局Mixin对象mounted")
         }
         
       })
@@ -57,6 +58,12 @@
     }
     App.component("com",com)
     
+    const com2 ={
+       template:
+        `<div>com2</div>`
+    }
+    
+    App.component("com2",com2)
     App.mount("#Application")  
     </script>
     

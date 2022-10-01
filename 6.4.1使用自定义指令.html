@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>自定义指令</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="Application">
+      <!= 自定义指令带参数>
+      <!= :custom="{a:1,b:2}">
+      <!= 调用自定义指令需加上 v-前缀>
+      <input v-getfocus:custom="1">
+      <sub-com></sub-com>
+    </div>
+    
+    <script>
+      const App = Vue.createApp({})
+      //全局注册
+      App.directive('getfocus',{
+        //当绑定此指令的元素被挂载时调用
+        mounted(el,param1){
+          //指令设置的值被绑定到param对象的value属性上，指令设置的custom被绑定到param对象的arg属性上
+          console.log(param1.value + param1.arg)
+          console.log("全局自定义指令element可以使用其它名称: " + el)
+          if(param1.value == "1"){
+            el.focus()
+          }
+          
+          
+        }
+      })
+      //局部注册，组件内配置自定义指令
+      //局部只能当前组件使用其它组件则不能使用，全局指令所有组件均可使用
+      const sub ={
+        directives:{
+          //组件内部自定义指令
+          getfocus2:{
+            mounted(element){
+              console.log("局部element"+element),
+              element.focus()
+              element.value="hdh"
+            }
+          }
+        },
+        mounted(){
+          console.log(this.version)
+        },
+        template:
+        `
+          <div>
+            <input v-getfocus2 />
+          </div>
+        `
+      }
+      
+      App.component("sub-com",sub)
+      
+      App.mount("#Application")
+      
+      
+    </script>
+    
+    
+</body>
+
+</html>

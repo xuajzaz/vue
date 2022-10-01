@@ -63,11 +63,12 @@
         computed:{
           name: {
             get() {
+              console.log("name的get")
               return this.fields[0].model
             },
-            set(value){
-              console.log("name:value:" + value)
-              this.fields[0].model = value
+            set(v){
+              console.log("set   name:value:" + v)
+              this.fields[0].model = v
             }
           },
           email:{
@@ -75,7 +76,6 @@
               return this.fields[1].model
             },
             set(value){
-              
               this.fields[1].model = value
             }
           },
@@ -90,6 +90,19 @@
           
         },
         methods:{
+        
+          emailCheck(value){
+            console.log("emailCheck的this.email:" + value)
+            var verify = /^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+            if(!verify.test(this.email)){
+              console.log("false")
+              return false
+            }else{
+              console.log("true")
+              return true
+            }
+            
+          },
           createAccount(){
             console.log("用户名:" + this.name)
           if(this.name.length == 0){
@@ -99,41 +112,26 @@
           }else if(this.password.length < 6){
             alert("密码最少设置6位")
             return
-          }else if(this.email.length > 0 && !this.emailCheck(this.email)){
-            alert("请输入正确的邮箱")
-            return
           }
+          else if(this.email.length > 0 && !this.emailCheck(this.email)){
+          alert("请输入正确的邮箱")
+          return
+          }
+          
+          
           alert("注册成功")
-            
+          //调用计算属性set方法
+          this.name = "张三"
           }, 
-          emailCheck(value){
-            console.log("emailCheck的value:" + value)
-            var verify = /^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9+\.])+[A-Za-z]{2,14}/;
-            
-            if(!verify.test(value)){
-              return false
-            }else{
-              return true
-            }
-            
-          }
           
         }
         
       }
       
-      
-      
-      
-      
-      
      let instance = Vue.createApp(App).mount("#Application")
      
     </script>
-    
-    
-    
-    
+
     <style>
       .container{
         margin: 0 auto;
