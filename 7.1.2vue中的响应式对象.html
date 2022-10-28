@@ -28,26 +28,27 @@
           let myObject = Vue.ref(0)
           
           
-          //对myObject对象进行解构赋值，将value属性单独提取出来
-          let {valueRef} = myObject
+          //对myObject对象进行解构赋值，将value属性单独提取出来必须为value
+          //let {value} = myObject会导致失去响应式要具有响应式应转成ref变量
+          let {value} = Vue.toRefs(myData2)
           //按钮的单击方法
           function click(){
             myData.value += 1
             myData2.value += 2
             
-            //修改ref的变量需要对value属性修改
+          //修改ref的变量需要对value属性修改
             myObject.value += 1
-            valueRef += 1
-            console.log(myData.value)
-            console.log(myData2.value)
+            value.value += 5
+            console.log(value.value)
+            console.log(333333)
           }
           //将数据返回
           return {
             myData,
             myData2,
             myObject,
-            valueRef,
-            click
+            value,
+            click,
           }
         },
         //模板中可以直接使用setup方法中定义的数据和函数
@@ -56,7 +57,7 @@
         <h1>测试数据myData:{{myData}}</h1>
           <h1>测试数据myData2:{{myData2.value}}</h1>
           <h1>测试数据myObject:{{myObject}}</h1>
-            <h1>测试数据valueRef:{{valueRef}}</h1>
+            <h1>测试数据value:{{value}}</h1>
           <div>页面数据不会响应改变</div>
           <button @click="click">点击</button>
           
